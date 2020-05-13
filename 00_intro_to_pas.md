@@ -186,11 +186,207 @@ Great, more ServiceRocket training.
 
 
 
-# Business Risk – Targeted Attacks and the "attack life-cycle"
+# Business Risk – Targeted Attacks and the attack life-cycle"
+
+## agenda
+* overview of targeted attacks
+* actors & tactics
+* cyber attack lifecycle
+
+## what are targeted attacks
+
+* attack can be considered targeted:
+  * attackers focus on a group of orgs, an org, or specific employees
+  * objective is infiltrate target network, to exfiltrate data or disrupt business
+  * maintain persistence
+  * considerable effort to make sure that their goals are acheived
+
+### actors & tactics
+
+* key findings from 2017 VZ data breach investigation
+  * 75% of breaches were carried out by outsiders that infilitrated perimeter
+  * 81$ of breaches leveraged either stolen and/or weak passwords
+
+### the cyber attack lifecycle
+
+* Internal team at cyberark studies attacks and have derived a general attack pattern
+
+#### external recon
+* collect enough intelligence to successfully attack target org
+* attack surface: total sum of vulns in a network that are accessible to the internet
+  * unpatched systems
+  * ip address ranges
+  * open ports
+  * target endpoints
+
+#### breach
+* methods:
+  * spear-phishing attack
+    * electronic communication scam to target specific people
+      * may install malware
+      * may end up in data exfilitration
+  * zero-day exploits
+    * any flaw that is unknown to the vendor
+  * customized malware
+    * malware customized to get around various security technologies
+  * drive-by-download
+    * infects a computer by having a user visit a web site that is running malicious code. 
+  * social engineering
+    * manipulating people to give up confidential info or access to the network.
+
+#### internal recon
+* using privileges that attacker obtained
+* purpose: id accounst that can get them closer to their goal
+  * checks which assets he can access
+  * checks who the privileged users are
+  * checks what privileges they have
+  * goal is to move laterally
+
+#### lateral movement
+* goal: take control other OS instances, includign DCs
+* move around the network
+  * mapping internal systems
+    * discovery actions
+  * harvesting creds
+
+#### domain compromised
+* one priv esc occurs, continue to gather information and/or implant software, etc.
+
+#### exfiltration / end game
+* it's possible that if the attacker is seeking PII/PHI/IP, etc, exfil of data is possible
+
+#### privilege is at the center of the attack
+
+![](2020-05-13-09-21-09.png)
+
+* attackers are resident over average for 146 days
+* remember path of life cycle
+  * external --> internal
+  * enum/recon
+  * priv esc
+  * enum/recon
+  * priv esc --> Golden ticket attack for instance
+  * result: disrupt business/data exfil
+
+
+## recommendations
+
+### implement endpoint protection
+* remove local admin rights from standard users
+* control applications to minimize malware infection risks
+* patch systems to remediate known vulns
+* encourage usres to be suspicious of phishing
+
+### monitor and detect privileged threat
+* examine privileged session activity to detect insider threats
+* analyze user and account behavior to detect anomalous activity
+* 
+
+### secure and control credentials
+* use MFA
+* change admin passwords frequently
+* require unique local admin passwords on each system
+* protectively secure and monitor the use of high-value accounts
+* segement the network to limit access to sensitive IT systems
+* isolate and restrict access to critical systems
+
 
 # Business Risk – Ransomware The CyberArk Solutions
 
-# CyberArk Blueprint for PAS Success
+* ransomware makes up 40% of attacks.
+* 1989 is first recorded ransomware attack
+
+## agenda
+* ransomware attack landscope
+* how ransomeware works
+* what makes randomware successful
+* app control
+* recommendations
+
+## what is ransomware
+* a type of malware: that focuses on revealing data publicly, or encrypting data to make it unavailable.
+
+## ransomware can impact orgs of all types
+* attack impact
+* $325 million was paid in 2015
+* estimation that cyber incidents will result in $6 trillion by 2021.
+
+## ransomware in action
+
+### how does a machine get infected
+* malicious email
+  * sender email address
+  * link dst
+* advertising service compromise
+* once infected, the ransomware may spread
+  * it may wait for a specific application to run
+  * it may wait for a time
+
+### retrieve an encryption key
+* connection may be made to external resource to obtain encryption key
+  * 20% of ransomware would stop immediately if this connection was blocked
+  * 70% of ransomeware would use a default key that was embedded in the ransomware itself
+
+### build a file inventory
+* scans for files local on the machine or on shared drives
+
+### attmpts to propagate
+* scans for connected machines
+* scans for user creds
+
+### spread through network
+* often uses captured creds to install itself on more machines
+
+### encrypt, notify, repeat
+* it will utilize the file inventory to encrypt files
+
+## what makes ransomware so successful
+* polymorphic malware helps attacker evade detection
+  * evading traditional AV.
+* ransomware doesn't need admin creds
+  * it mimics a user.
+
+## where can you break the attack chain?
+* protect the perimeter
+  * difficult to catch as the files are polymorphic
+* block the conversation to the key server 
+  * damage still possible
+* protection at file level
+  * which proved to be most effective in lab tests
+
+## file protection using application control
+* protecting at file level
+  * application control
+    * whitelist
+      * known, trusted, and good
+      * for servers that run the same application over time
+      * impractical for endpoints (this is argubly WRONG!)
+    * blacklist
+      * known, not trusted, and malicious
+      * often not complete
+    * greylist (99.97% effective)
+      * specify policies for unknown applications
+        * ex: invoke restricted mode
+          * no internet access, etc
+          * no access to network shares
+          * restrict file rights
+
+## recommendations
+* whitelist apps on servers
+* restrict permissions for greylisted applications
+* remove local admin rights from standard users
+  * blocks most malware from running
+  * 10% of ransomware to fail immediately
+* follow general best practices for AV
+* data backups
+
+# CyberArk Blueprint for PAM Success
+
+## agenda
+* review current challenges desigining a PAM program
+* learn what cyberark blueprint is and how it was developed.
+* Understand hwow the blueprint phased approach helps design a successful PAM program roadmap.
+* Learn where to get more info on cyberark blueprint
 
 # Introduction to DevOps and Secrets Management
 
